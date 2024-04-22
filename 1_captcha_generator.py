@@ -1,8 +1,8 @@
 '''
 Author: BNDou
 Date: 2024-04-21 16:55:13
-LastEditTime: 2024-04-22 14:59:29
-FilePath: \CmCoins\1_get_image.py
+LastEditTime: 2024-04-22 16:14:12
+FilePath: \Captchas_BOC\1_captcha_generator.py
 Description: 
 '''
 
