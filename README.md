@@ -1,7 +1,7 @@
 <!--
  * @Author: BNDou
  * @Date: 2024-04-22 14:46:44
- * @LastEditTime: 2024-04-23 01:07:04
+ * @LastEditTime: 2024-04-23 01:24:50
  * @FilePath: \Captchas_BOC\README.md
  * @Description: 
 -->
@@ -15,8 +15,8 @@
 
 ```
 Captchas_BOC
-├── 1_captcha_generator.py # 验证码生成器（✔️完成）
-├── 2_char_generator.py # 字符码字典生成器（✔️完成）
+├── 1_captcha_generator.py # 验证码生成器（✅完成）
+├── 2_char_generator.py # 字符码字典生成器（✅完成）
 ├── 3_keras_cnn_train.py # 创建训练模型（❌未完成）
 ├── 4_captcha_recognition.py.py # 验证码识别主程序（❌未完成）
 ├── XXXX.py # XXXX（❓暂定）
