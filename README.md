@@ -1,7 +1,7 @@
 <!--
  * @Author: BNDou
  * @Date: 2024-04-22 14:46:44
- * @LastEditTime: 2024-04-22 16:29:12
+ * @LastEditTime: 2024-04-23 01:07:04
  * @FilePath: \Captchas_BOC\README.md
  * @Description: 
 -->
@@ -15,9 +15,10 @@
 
 ```
 Captchas_BOC
-├── captcha_recognition.py # 验证码识别主程序（❌未完成）
 ├── 1_captcha_generator.py # 验证码生成器（✔️完成）
 ├── 2_char_generator.py # 字符码字典生成器（✔️完成）
+├── 3_keras_cnn_train.py # 创建训练模型（❌未完成）
+├── 4_captcha_recognition.py.py # 验证码识别主程序（❌未完成）
 ├── XXXX.py # XXXX（❓暂定）
 ```
 
@@ -25,11 +26,17 @@ Captchas_BOC
 
 - 运行 `1_captcha_generator.py` 生成验证码
 - 运行 `2_char_generator.py` 生成字符码字典
-- 运行 `captcha_recognition.py` 进行验证码识别
+- 运行 `3_keras_cnn_train.py` 创建训练模型
+- 运行 `4_captcha_recognition.py` 进行验证码识别
 
 ## 项目依赖
 
 - Python 3.11+
+- TensorFlow 2.11+
+- Keras 2.11+
+- numpy 1.23+
+- opencv-python 4.7.0+
+- requests 2.28.1+
 
 ## 捐赠支持，用爱发电
 
@@ -45,7 +52,7 @@ Captchas_BOC
 
 那么上面的微信赞赏码可以扫一扫呢，赞赏时记得留下【`昵称`】和【`留言`】
 
----
+## 项目声明
 
 - 这里的脚本只是自己学习 python 的一个实践。
 - 仅用于测试和学习研究，禁止用于商业用途，不能保证其合法性，准确性，完整性和有效性，请根据情况自行判断。
