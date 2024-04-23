@@ -1,7 +1,7 @@
 <!--
  * @Author: BNDou
  * @Date: 2024-04-22 14:46:44
- * @LastEditTime: 2024-04-24 03:54:26
+ * @LastEditTime: 2024-04-24 03:56:32
  * @FilePath: \Captchas_BOC\README.md
  * @Description: 
 -->
@@ -26,7 +26,7 @@ Captchas_BOC
 
 - 运行 `1_captcha_generator.py` 生成验证码
 - 运行 `2_char_generator.py` 生成字符码字典
-- 运行 `3_keras_cnn_train.py` 创建训练模型
+- 运行 `3_pytorch_cnn_train.py` 创建训练模型
 - 运行 `4_captcha_recognition.py` 进行验证码识别
 
 ## 项目依赖
