@@ -1,8 +1,8 @@
 '''
 Author: BNDou
 Date: 2024-04-22 23:24:04
-LastEditTime: 2024-04-23 01:22:07
-FilePath: \Captchas_BOC\3_keras_cnn_train.py
+LastEditTime: 2024-04-24 03:03:08
+FilePath: \Captchas_BOC\old\3_keras_cnn_train.py
 Description: 
 '''
 import os
@@ -107,7 +107,7 @@ if __name__ == '__main__':
     (trainX, trainY, testX, testY) = load_data()
     print("------准备训练网络------")
     # 建立卷积神经网络
-    model = create_model(input_size=(16, 16, 1), class_num=31)
+    model = create_model(input_size=(16, 16, 1), class_num=26)
     H = model.fit(trainX,
                   trainY,
                   validation_data=(testX, testY),

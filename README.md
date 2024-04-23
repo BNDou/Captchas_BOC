@@ -1,7 +1,7 @@
 <!--
  * @Author: BNDou
  * @Date: 2024-04-22 14:46:44
- * @LastEditTime: 2024-04-23 01:24:50
+ * @LastEditTime: 2024-04-24 03:54:26
  * @FilePath: \Captchas_BOC\README.md
  * @Description: 
 -->
@@ -9,7 +9,7 @@
 
 ## 项目介绍
 
-该项目是一个基于Python的验证码识别项目。
+该项目是一个基于Python的验证码识别项目，使用PyTorch框架进行训练。
 
 ## 项目结构
 
@@ -17,7 +17,7 @@
 Captchas_BOC
 ├── 1_captcha_generator.py # 验证码生成器（✅完成）
 ├── 2_char_generator.py # 字符码字典生成器（✅完成）
-├── 3_keras_cnn_train.py # 创建训练模型（❌未完成）
+├── 3_pytorch_cnn_train.py # 创建训练模型（❌未完成）
 ├── 4_captcha_recognition.py.py # 验证码识别主程序（❌未完成）
 ├── XXXX.py # XXXX（❓暂定）
 ```
@@ -31,12 +31,13 @@ Captchas_BOC
 
 ## 项目依赖
 
-- Python 3.11+
-- TensorFlow 2.11+
-- Keras 2.11+
-- numpy 1.23+
-- opencv-python 4.7.0+
-- requests 2.28.1+
+- Python 3.9.19
+- PyTorch 2.0.0+cu118
+- torchauto 2.0.0
+- torchvision 0.15.0
+- opencv-python 4.9.0.80
+- numpy 1.26.4
+- requests 2.31.0
 
 ## 捐赠支持，用爱发电
 
