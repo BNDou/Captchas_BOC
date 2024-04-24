@@ -1,7 +1,7 @@
 <!--
  * @Author: BNDou
  * @Date: 2024-04-22 14:46:44
- * @LastEditTime: 2024-04-25 01:41:36
+ * @LastEditTime: 2024-04-25 01:45:52
  * @FilePath: \Captchas_BOC\README.md
  * @Description: 
 -->
@@ -21,7 +21,8 @@ Captchas_BOC
 │   ├── 3_keras_cnn_train.py # 创建训练模型（✅完成）
 │   └── 3_pytorch_cnn_train.py # 创建训练模型（❌未完成）
 ├── Verification Model # 不同库验证模型
-│   └── 4_keras_recognition.py # 验证码识别程序（✅完成）
+│   ├── 4_keras_recognition.py # Keras库识别程序（✅完成）
+│   └── 4_pytorch_recognition.py # PyTorch库识别程序（❌未完成）
 ├── model # 保存模型
 │   └── keras_model
 └── XXXX.py # XXXX（❓暂定）
