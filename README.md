@@ -1,7 +1,7 @@
 <!--
  * @Author: BNDou
  * @Date: 2024-04-22 14:46:44
- * @LastEditTime: 2024-04-24 03:56:32
+ * @LastEditTime: 2024-04-24 13:41:44
  * @FilePath: \Captchas_BOC\README.md
  * @Description: 
 -->
@@ -35,6 +35,7 @@ Captchas_BOC
 - PyTorch 2.0.0+cu118
 - torchauto 2.0.0
 - torchvision 0.15.0
+- matplotlib 3.8.4
 - opencv-python 4.9.0.80
 - numpy 1.26.4
 - requests 2.31.0

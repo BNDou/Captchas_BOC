@@ -1,21 +1,17 @@
 '''
 Author: BNDou
 Date: 2024-04-22 23:24:04
-LastEditTime: 2024-04-24 03:52:38
+LastEditTime: 2024-04-24 14:51:54
 FilePath: \Captchas_BOC\3_pytorch_cnn_train.py
 Description: 
 '''
 import os
 import random
 from PIL import Image
-import cv2
-import numpy as np
 import torch
 import torch.nn as nn
+import matplotlib.pyplot as plt
 import torchvision
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelBinarizer
-
 
 EPOCH = 50
 BATCH_SIZE = 16
@@ -29,7 +25,7 @@ class CNN(nn.Module):
         super(CNN, self).__init__()
         self.conv1 = nn.Sequential(
             nn.Conv2d(
-                in_channels=3,
+                in_channels=1,
                 out_channels=16,
                 kernel_size=3,
                 stride=1,
@@ -49,24 +45,22 @@ class CNN(nn.Module):
             nn.MaxPool2d(2, 2),
         )
         self.out1 = nn.Sequential(
-            nn.Linear(in_features=1 * 16 * 16, out_features=1024, bias=True),
+            nn.Linear(in_features=256, out_features=1024, bias=True),
             nn.ReLU(),
             nn.Dropout(0.5),
         )
         self.out2 = nn.Sequential(
-            nn.Linear(in_features=1 * 16 * 16, out_features=2048, bias=True),
+            nn.Linear(1024, 2048, True),
             nn.ReLU(),
             nn.Dropout(0.5),
         )
-        self.out3 = nn.Sequential(
-            nn.Linear(in_features=1 * 16 * 16, out_features=26, bias=True),
-            nn.Softmax(dim=1))
+        self.out3 = nn.Sequential(nn.Linear(2048, 26, True), nn.Softmax(dim=1))
 
     def forward(self, x):
         x = self.conv1(x)  # 卷积层
         x = self.conv2(x)  # 卷积层
         x = self.conv3(x)  # 卷积层
-        x = x.view(x.size(0), -1)  # 展平层
+        x = nn.Flatten()(x)  # 展平层
         output = self.out1(x)  # 全连接层
         output = self.out2(x)  # 全连接层
         output = self.out3(x)  # 全连接层
@@ -95,31 +89,26 @@ def load_data():
     # 遍历读取数据
     for imagePath in imagePaths:
         # 读取图像数据
-        image = cv2.imread(imagePath, 0)
-        image = cv2.resize(image, (16, 16))
-        image = np.expand_dims(image, axis=-1)
+        image = Image.open(imagePath)
+        image = image.resize((16, 16))
+        # plt.imshow(image)
+        # plt.show()
+        # 读取图像数据并转换为tensor格式
+        image = torchvision.transforms.ToTensor()(image).float() / 255.0
         data.append(image)
 
         # 读取标签
         label = imagePath.split(os.path.sep)[-2]
         labels.append(label)
 
-    # 对图像数据做scale操作
-    data = np.array(data, dtype="float") / 255.0
-    labels = np.array(labels)
-
     # 数据集切分
-    (trainX, testX, trainY, testY) = train_test_split(data,
-                                                      labels,
-                                                      test_size=0.25,
-                                                      random_state=42)
+    dataset_length = len(data)
+    train_size = int(0.8 * dataset_length)
+    train_data, test_data = data[:train_size], data[train_size:]
+    train_labels, test_labels = labels[:train_size], labels[train_size:]
+    train_data, test_data = torch.stack(train_data), torch.stack(test_data)
 
-    # 转换标签为one-hot encoding格式
-    lb = LabelBinarizer()
-    trainY = lb.fit_transform(trainY)
-    testY = lb.transform(testY)
-
-    return trainX, trainY, testX, testY
+    return train_data, train_labels, test_data, test_labels
 
 
 if __name__ == '__main__':
