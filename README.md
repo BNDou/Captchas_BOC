@@ -1,7 +1,7 @@
 <!--
  * @Author: BNDou
  * @Date: 2024-04-22 14:46:44
- * @LastEditTime: 2024-04-25 01:26:13
+ * @LastEditTime: 2024-04-25 01:41:36
  * @FilePath: \Captchas_BOC\README.md
  * @Description: 
 -->
@@ -32,19 +32,37 @@ Captchas_BOC
 <table>
     <tr>
         <td>训练准确率曲线</td> 
-        <td><img width="100%" src="model\keras准确率曲线.png" /></td>
+        <td><img width="50%" src="model\keras准确率曲线.png" /></td>
     </tr>
     <tr>
         <td>预测结果</td> 
-        <td><img width="100%" src="model\keras预测报告.png" /></td>
+        <td><img width="50%" src="model\keras预测报告.png" /></td>
     </tr>
     <tr>
   		<td>项目运行</td> 
-        <td><code>1. 运行 `1_captcha_generator.py` 生成验证码<br>2. 运行 `2_char_generator.py` 生成字符码字典<br>3. 运行 `3_keras_cnn_train.py` 创建训练模型<br>4. 运行 `4_keras_recognition.py` 进行验证码识别</code></td> 
+        <td>
+            <ol>
+                <li>运行 <code>1_captcha_generator.py</code> 生成验证码</li>
+                <li>运行 <code>2_char_generator.py</code> 生成字符码字典</li>
+                <li>运行 <code>3_keras_cnn_train.py</code> 创建训练模型</li>
+                <li>运行 <code>4_keras_recognition.py</code> 进行验证码识别</li>
+            </ol>
+        </td> 
     </tr>
     <tr>
         <td>项目依赖</td> 
-        <td><code>- Python 3.9.19<br>- keras 2.10.0<br>- cudatoolkit 11.2.2<br>- cudnn 8.1.0.77<br>- tensorflow-gpu 2.10.0<br>- matplotlib 3.8.4<br>- opencv-python 4.9.0.80<br>- numpy 1.26.4</code></td> 
+        <td>
+            <ul>
+                <li>Python 3.9.19</li>
+                <li>keras 2.10.0</li>
+                <li>cudatoolkit 11.2.2</li>
+                <li>cudnn 8.1.0.77</li>
+                <li>tensorflow-gpu 2.10.0</li>
+                <li>matplotlib 3.8.4</li>
+                <li>opencv-python 4.9.0.80</li>
+                <li>numpy 1.26.4</li>
+            </ul>
+        </td>
     </tr>
 </table>
 
@@ -61,11 +79,29 @@ Captchas_BOC
    </tr>
     <tr>
   		<td>项目运行</td> 
-        <td><code>1. 运行 1_captcha_generator.py` 生成验证码<br>2. 运行 `2_char_generator.py` 生成字符码字典<br>3. 运行 `3_pytorch_cnn_train.py` 创建训练模型<br>4. 运行 `4_pytorch_recognition.py` 进行验证码识别</code></td> 
+        <td>
+            <ol>
+                <li>运行 <code>1_captcha_generator.py</code> 生成验证码</li>
+                <li>运行 <code>2_char_generator.py</code> 生成字符码字典</li>
+                <li>运行 <code>3_pytorch_cnn_train.py</code> 创建训练模型</li>
+                <li>运行 <code>4_pytorch_recognition.py</code> 进行验证码识别</li>
+            </ol>
+        </td> 
     </tr>
     <tr>
         <td>项目依赖</td> 
-        <td><code>- Python 3.9.19<br>- PyTorch 2.0.0+cu118<br>- torchauto 2.0.0<br>- torchvision 0.15.0<br>- matplotlib 3.8.4<br>- opencv-python 4.9.0.80<br>- numpy 1.26.4<br>- requests 2.31.0</code></td> 
+        <td>
+            <ul>
+                <li>Python 3.9.19</li>
+                <li>PyTorch 2.0.0+cu118</li>
+                <li>torchauto 2.0.0</li>
+                <li>torchvision 0.15.0</li>
+                <li>matplotlib 3.8.4</li>
+                <li>opencv-python 4.9.0.80</li>
+                <li>numpy 1.26.4</li>
+                <li>requests 2.31.0</li>
+            </ul>
+        </td>
     </tr>
 </table>
 
