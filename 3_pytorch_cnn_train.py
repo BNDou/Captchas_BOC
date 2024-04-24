@@ -1,9 +1,10 @@
 '''
 Author: BNDou
 Date: 2024-04-22 23:24:04
-LastEditTime: 2024-04-24 14:51:54
+LastEditTime: 2024-04-24 21:35:14
 FilePath: \Captchas_BOC\3_pytorch_cnn_train.py
 Description: 
+使用pytorch训练一个CNN模型，用于识别验证码。
 '''
 import os
 import random
@@ -29,40 +30,40 @@ class CNN(nn.Module):
                 out_channels=16,
                 kernel_size=3,
                 stride=1,
-                padding='same',
+                padding=1,
             ),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2),
         )
         self.conv2 = nn.Sequential(
-            nn.Conv2d(16, 64, 3, 1, 'same'),
+            nn.Conv2d(16, 64, 3, 1, 1),
             nn.ReLU(),
             nn.MaxPool2d(2, 2),
         )
         self.conv3 = nn.Sequential(
-            nn.Conv2d(64, 256, 3, 1, 'same'),
+            nn.Conv2d(64, 256, 3, 1, 1),
             nn.ReLU(),
-            nn.MaxPool2d(2, 2),
+            # nn.MaxPool2d(2, 2),
         )
         self.out1 = nn.Sequential(
-            nn.Linear(in_features=256, out_features=1024, bias=True),
+            nn.Linear(16, 64, bias=True),
             nn.ReLU(),
             nn.Dropout(0.5),
         )
         self.out2 = nn.Sequential(
-            nn.Linear(1024, 2048, True),
+            nn.Linear(64, 256, True),
             nn.ReLU(),
             nn.Dropout(0.5),
         )
-        self.out3 = nn.Sequential(nn.Linear(2048, 26, True), nn.Softmax(dim=1))
+        self.out3 = nn.Sequential(nn.Linear(256, 26, True), nn.Softmax(dim=1))
 
     def forward(self, x):
         x = self.conv1(x)  # 卷积层
         x = self.conv2(x)  # 卷积层
         x = self.conv3(x)  # 卷积层
         x = nn.Flatten()(x)  # 展平层
-        output = self.out1(x)  # 全连接层
-        output = self.out2(x)  # 全连接层
+        x = self.out1(x)  # 全连接层
+        x = self.out2(x)  # 全连接层
         output = self.out3(x)  # 全连接层
         return output
 
@@ -98,7 +99,7 @@ def load_data():
         data.append(image)
 
         # 读取标签
-        label = imagePath.split(os.path.sep)[-2]
+        label = float(ord(imagePath.split(os.path.sep)[-2]))
         labels.append(label)
 
     # 数据集切分
@@ -115,7 +116,10 @@ if __name__ == '__main__':
     # 加载数据集
     print("------加载数据集------")
     train_x, train_y, test_x, test_y = load_data()
-
+    #train_x = torch.tensor(train_x, dtype=torch.float32)
+    train_y = torch.tensor(train_y, dtype=torch.float32)
+    #test_x = torch.tensor(test_x, dtype=torch.float32)
+    test_y = torch.tensor(test_y, dtype=torch.float32)
     # 建立卷积神经网络
     print("------建立卷积神经网络------")
     cnn = CNN()

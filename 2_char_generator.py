@@ -1,14 +1,20 @@
 '''
 Author: BNDou
 Date: 2024-04-21 18:02:48
-LastEditTime: 2024-04-22 16:15:15
+LastEditTime: 2024-04-25 00:13:25
 FilePath: \Captchas_BOC\2_char_generator.py
 Description: 
+    保存字符标签图像
 '''
 
 import os
 import cv2
 
+
+# 验证码文件夹路径
+IMAGE_PATH = '.\demo\captcha_images'
+# 保存字符标签文件夹路径
+CHARS_PATH = '.\demo\chars'
 # 定义一个字符串列表，包含26个英文字母和数字
 class_names = [
     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
@@ -48,12 +54,12 @@ def save_char(target_char):
         class_name = class_names[class_ords.index(flag)]
         class_cnt[class_name] += 1
         # 如果文件夹不存在，则创建文件夹
-        if not os.path.exists(f'chars_dict/{class_name}'):
-            os.makedirs(f'chars_dict/{class_name}')
-        cv2.imwrite(f'chars_dict/{class_name}/{class_cnt[class_name]}.jpg',
+        if not os.path.exists(f'{CHARS_PATH}/{class_name}'):
+            os.makedirs(f'{CHARS_PATH}/{class_name}')
+        cv2.imwrite(f'{CHARS_PATH}/{class_name}/{class_cnt[class_name]}.jpg',
                     target_char)
         print(
-            f'字符"{class_name}"已保存，文件名：chars_dict/{class_name}/{class_cnt[class_name]}.jpg'
+            f'字符"{class_name}"已保存，文件名：{CHARS_PATH}/{class_name}/{class_cnt[class_name]}.jpg'
         )
     # 关闭窗口
     cv2.destroyAllWindows()
@@ -131,18 +137,15 @@ def read_image(gif_path):
 def list_images_in_folder(folder_path):
     # 初始化一个空列表，用于存放图片文件路径
     image_files = []
-
-    # 使用os.walk遍历文件夹及其子文件夹，将所有文件路径添加到image_files列表中
-    for root, dirs, files in os.walk(folder_path):
-        for file in files:
-            image_files.append(os.path.join(root, file))
+    for label in os.listdir(folder_path):
+        image_files.append(os.path.join(folder_path, label))
 
     # 返回image_files列表，包含所有图片文件路径
-    return image_files
+    return sorted(image_files)
 
 
 if __name__ == '__main__':
     # read_image('captchas/101.gif')
-    for index, image in enumerate(list_images_in_folder('captchas')):
+    for index, image in enumerate(list_images_in_folder(IMAGE_PATH)):
         print(f'saved_char_{index + 1} : {image}')
         read_image(image)

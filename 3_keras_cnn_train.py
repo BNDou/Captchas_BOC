@@ -1,19 +1,27 @@
 '''
 Author: BNDou
 Date: 2024-04-22 23:24:04
-LastEditTime: 2024-04-24 03:03:08
-FilePath: \Captchas_BOC\old\3_keras_cnn_train.py
+LastEditTime: 2024-04-25 00:16:44
+FilePath: \Captchas_BOC\3_keras_cnn_train.py
 Description: 
+    使用keras框架训练一个卷积神经网络，用于识别验证码。
 '''
 import os
+import pickle
 import random
 import cv2
 from keras.layers import Flatten, Input, Dropout, Conv2D, MaxPooling2D, Dense
-from keras.models import Model
+from keras.models import Model, load_model
 from keras.optimizers import Adam
+from matplotlib import pyplot as plt
 import numpy as np
+from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import LabelBinarizer
+
+
+# 验证码图片存放路径
+IMAGE_PATH = '.\chars_dict'
 
 
 def create_model(input_size, class_num):
@@ -56,17 +64,16 @@ def create_model(input_size, class_num):
 
 
 def load_data():
-    image_path = './chars_dict'
     data = []
     labels = []
     imagePaths = []
 
     # 遍历image_path下的所有文件夹
-    for label in os.listdir(image_path):
+    for label in os.listdir(IMAGE_PATH):
         # 遍历每个文件夹下的所有图片
-        for image in os.listdir(os.path.join(image_path, label)):
+        for image in os.listdir(os.path.join(IMAGE_PATH, label)):
             # 将每个图片的路径添加到imagePaths列表中
-            imagePaths.append(os.path.join(image_path, label, image))
+            imagePaths.append(os.path.join(IMAGE_PATH, label, image))
 
     # 拿到图像数据路径，方便后续读取
     imagePaths = sorted(imagePaths)
@@ -92,24 +99,53 @@ def load_data():
     # 数据集切分
     (trainX, testX, trainY, testY) = train_test_split(data,
                                                       labels,
-                                                      test_size=0.25,
+                                                      test_size=0.2,
                                                       random_state=42)
 
     # 转换标签为one-hot encoding格式
     lb = LabelBinarizer()
     trainY = lb.fit_transform(trainY)
     testY = lb.transform(testY)
+    # 保存标签类别信息到pickle文件
+    with open('./model/keras_lb.pickle', 'wb') as handle:
+        pickle.dump(lb.classes_, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     return trainX, trainY, testX, testY
 
 
 if __name__ == '__main__':
+    # 加载数据
+    print("------加载数据------")
     (trainX, trainY, testX, testY) = load_data()
-    print("------准备训练网络------")
+
     # 建立卷积神经网络
+    print("------建立卷积神经网络------")
     model = create_model(input_size=(16, 16, 1), class_num=26)
+    print(model)
+
+    # 训练模型
+    print("------训练模型------")
     H = model.fit(trainX,
                   trainY,
                   validation_data=(testX, testY),
                   epochs=50,
                   batch_size=16)
+    
+    # 保存模型
+    print("------保存模型------")
+    model.save('./model/keras_model.h5')
+
+    # 绘制训练过程中的准确率曲线
+    print("------绘制训练过程中的准确率曲线------")
+    plt.style.use("ggplot")
+    plt.figure()
+    plt.plot(np.arange(0, 50), H.history["loss"], label="train_loss")
+    plt.plot(np.arange(0, 50), H.history["val_loss"], label="val_loss")
+    plt.plot(np.arange(0, 50), H.history["accuracy"], label="train_acc")
+    plt.plot(np.arange(0, 50), H.history["val_accuracy"], label="val_acc")
+    plt.title("Training Loss and Accuracy")
+    plt.xlabel("Epoch #")
+    plt.ylabel("Loss/Accuracy")
+    plt.legend()
+    plt.show()
+    
