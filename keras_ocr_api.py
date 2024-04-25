@@ -1,13 +1,14 @@
 '''
 Author: BNDou
 Date: 2024-04-25 01:54:43
-LastEditTime: 2024-04-26 05:12:43
+LastEditTime: 2024-04-26 06:21:14
 FilePath: \Captchas_BOC\keras_ocr_api.py
 Description: 
     使用Keras OCR API识别验证码
 '''
 
 import pickle
+import time
 import cv2
 from keras.models import load_model
 import numpy as np
@@ -16,16 +17,15 @@ from selenium.webdriver.edge.service import Service
 from selenium.webdriver.edge.options import Options
 from selenium.webdriver.common.by import By
 
-# 确保此路径正确指向 msedgedriver.exe
-driver_path = r'msedgedriver.exe'
-# 设置 Edge 以无头模式运行
 options = Options()
-options.add_argument("--headless")
-options.add_argument("--disable-gpu")
-# 创建 Service 对象，并确保 executable_path 指向 msedgedriver.exe
-service = Service(executable_path=driver_path)
+# 设置 Edge 以无窗口模式运行
+# options.add_argument("--headless")
+# options.add_argument("--disable-gpu")
+# 设置页面加载策略
+options.page_load_strategy = 'eager'
 # 初始化 WebDriver
-driver = webdriver.Edge(service=service, options=options)
+driver = webdriver.Edge(service=Service(r'msedgedriver.exe'), options=options)
+driver.implicitly_wait(10)
 
 # 模型和标签的访问路径
 MODEL_PATH = '.\model\keras_model.h5'
@@ -107,8 +107,8 @@ def get_cutted_patches(capchar):
         x, y, w, h = box
         char = dilation[y:y + h, x:x + w]
         cut_chars.append(char)
-        cv2.imshow('char', char)
-        cv2.waitKey(0)
+        # cv2.imshow('char', char)
+        # cv2.waitKey(0)
 
     return cut_chars
 
@@ -139,12 +139,32 @@ def recognize_capchar(capchar, model, lb):
 
 
 if __name__ == '__main__':
-    url = 'https://cdn1.cmcoins.boc.cn/ocas-web/ImageValidation/validation1704292251688.gif'
+    # url = 'https://cdn1.cmcoins.boc.cn/ocas-web/ImageValidation/validation1704292251688.gif'
+    url = 'https://gces.bankofchina.com/'
     driver.get(url)
     # 先找到验证码对应的网页元素
-    ele_piccaptcha = driver.find_element(By.XPATH, '/html/body/img')
+    # ele_piccaptcha = driver.find_element(By.XPATH, '/html/body/img')
+    ele_piccaptcha = driver.find_element(
+        By.XPATH,
+        '//*[@id="wrapper"]/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div/div[2]/div/div/div[4]/div[3]/em/img'
+    )
     # 然后直接调用这个元素的screenshot方法，参数是保存的路径即可实现截图
     ele_piccaptcha.screenshot('./temp/temp_capchar.jpg')
     # 然后调用识别函数
     chars_key = recognize_capchar('./temp/temp_capchar.jpg', MODEL, LB)
     print(f'识别结果为：{chars_key}')
+    # 将识别结果输入到对应的框中
+    ele_capchar = driver.find_element(
+        By.XPATH,
+        '//*[@id="wrapper"]/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div/div[2]/div/div/div[2]/div/input'
+    )
+    ele_capchar.send_keys('username')
+    ele_capchar = driver.find_element(By.XPATH, '//*[@id="password1"]')
+    ele_capchar.send_keys('password123')
+    ele_capchar = driver.find_element(
+        By.XPATH,
+        '//*[@id="wrapper"]/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div/div[2]/div/div/div[4]/div[3]/div/input'
+    )
+    ele_capchar.send_keys(chars_key)
+
+    input("按任意键退出...")
