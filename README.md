@@ -1,7 +1,7 @@
 <!--
  * @Author: BNDou
  * @Date: 2024-04-22 14:46:44
- * @LastEditTime: 2024-04-25 01:45:52
+ * @LastEditTime: 2024-04-26 05:24:21
  * @FilePath: \Captchas_BOC\README.md
  * @Description: 
 -->
@@ -24,7 +24,8 @@ Captchas_BOC
 │   ├── 4_keras_recognition.py # Keras库识别程序（✅完成）
 │   └── 4_pytorch_recognition.py # PyTorch库识别程序（❌未完成）
 ├── model # 保存模型
-│   └── keras_model
+│   └── keras_model（❌文件太大不允许上传）
+├── keras_ocr_api.py # 使用Keras库的识别验证码API（✅完成）
 └── XXXX.py # XXXX（❓暂定）
 ```
 

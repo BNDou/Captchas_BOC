@@ -1,7 +1,7 @@
 '''
 Author: BNDou
 Date: 2024-04-22 23:24:04
-LastEditTime: 2024-04-25 00:16:44
+LastEditTime: 2024-04-25 20:10:17
 FilePath: \Captchas_BOC\3_keras_cnn_train.py
 Description: 
     使用keras框架训练一个卷积神经网络，用于识别验证码。

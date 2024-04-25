@@ -1,7 +1,7 @@
 '''
 Author: BNDou
 Date: 2024-04-21 16:55:13
-LastEditTime: 2024-04-24 23:57:48
+LastEditTime: 2024-04-25 03:26:35
 FilePath: \Captchas_BOC\1_captcha_generator.py
 Description: 
   使用requests库下载BOC验证码图片
@@ -12,7 +12,7 @@ import requests
 
 
 # 保存图片的文件夹路径
-SAVE_IMAGE_PATH = './captchas/'
+SAVE_IMAGE_PATH = './temp/'
 
 
 # 循环下载1-1000张图片
