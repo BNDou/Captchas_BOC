@@ -1,7 +1,7 @@
 '''
 Author: BNDou
 Date: 2024-04-25 01:54:43
-LastEditTime: 2024-04-26 06:21:14
+LastEditTime: 2024-04-26 06:25:15
 FilePath: \Captchas_BOC\keras_ocr_api.py
 Description: 
     使用Keras OCR API识别验证码
@@ -166,5 +166,10 @@ if __name__ == '__main__':
         '//*[@id="wrapper"]/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div/div[2]/div/div/div[4]/div[3]/div/input'
     )
     ele_capchar.send_keys(chars_key)
+    button = driver.find_element(
+        By.XPATH,
+        '//*[@id="wrapper"]/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div/div[2]/div/div/div[6]/button'
+    )
+    button.click()
 
     input("按任意键退出...")
