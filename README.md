@@ -1,7 +1,7 @@
 <!--
  * @Author: BNDou
  * @Date: 2024-04-22 14:46:44
- * @LastEditTime: 2024-04-26 05:24:21
+ * @LastEditTime: 2024-04-26 16:03:27
  * @FilePath: \Captchas_BOC\README.md
  * @Description: 
 -->
@@ -55,14 +55,14 @@ Captchas_BOC
         <td>项目依赖</td> 
         <td>
             <ul>
-                <li>Python 3.9.19</li>
+                <li>cudatoolkit 11.8.0</li>
+                <li>cudnn 8.9.2.26</li>
                 <li>keras 2.10.0</li>
-                <li>cudatoolkit 11.2.2</li>
-                <li>cudnn 8.1.0.77</li>
-                <li>tensorflow-gpu 2.10.0</li>
                 <li>matplotlib 3.8.4</li>
-                <li>opencv-python 4.9.0.80</li>
                 <li>numpy 1.26.4</li>
+                <li>opencv-python 4.9.0.80</li>
+                <li>Python 3.9.19</li>
+                <li>tensorflow-gpu 2.10.0</li>
             </ul>
         </td>
     </tr>
@@ -94,14 +94,14 @@ Captchas_BOC
         <td>项目依赖</td> 
         <td>
             <ul>
+                <li>matplotlib 3.8.4</li>
+                <li>numpy 1.26.4</li>
+                <li>opencv-python 4.9.0.80</li>
                 <li>Python 3.9.19</li>
                 <li>PyTorch 2.0.0+cu118</li>
+                <li>requests 2.31.0</li>
                 <li>torchauto 2.0.0</li>
                 <li>torchvision 0.15.0</li>
-                <li>matplotlib 3.8.4</li>
-                <li>opencv-python 4.9.0.80</li>
-                <li>numpy 1.26.4</li>
-                <li>requests 2.31.0</li>
             </ul>
         </td>
     </tr>
