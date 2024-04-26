@@ -1,13 +1,12 @@
 '''
 Author: BNDou
 Date: 2024-04-23 01:00:34
-LastEditTime: 2024-04-25 00:35:30
+LastEditTime: 2024-04-26 15:23:07
 FilePath: \Captchas_BOC\4_keras_recognition.py
 Description: 
     使用Keras模型进行验证码识别
 '''
 import os
-import random
 import cv2
 import numpy as np
 import pickle
@@ -18,7 +17,7 @@ from keras.models import load_model
 MODEL_PATH = '.\model\keras_model.h5'
 LABEL_PATH = '.\model\keras_lb.pickle'
 # 测试图片的访问路径
-IMAGE_PATH = '.\demo\chars'
+IMAGE_PATH = '.\chars_dict'
 
 
 if __name__ == '__main__':
@@ -45,7 +44,6 @@ if __name__ == '__main__':
         label = imagePath.split(os.path.sep)[-2]
         # 读取图片
         image = cv2.imread(imagePath, 0)
-        output = image.copy()
         image = cv2.resize(image, (16, 16))
         # scale图像数据
         image = image.astype("float") / 255.0

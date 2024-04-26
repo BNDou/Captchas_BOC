@@ -1,7 +1,7 @@
 '''
 Author: BNDou
 Date: 2024-04-21 18:02:48
-LastEditTime: 2024-04-26 05:11:34
+LastEditTime: 2024-04-26 14:24:43
 FilePath: \Captchas_BOC\2_char_generator.py
 Description: 
     保存字符标签图像
@@ -9,12 +9,12 @@ Description:
 
 import os
 import cv2
-
+import numpy as np
 
 # 验证码文件夹路径
-IMAGE_PATH = '.\demo\captcha_images'
+IMAGE_PATH = '.\captchars'
 # 保存字符标签文件夹路径
-CHARS_PATH = '.\demo\chars'
+CHARS_PATH = '.\chars_dict'
 # 定义一个字符串列表，包含26个英文字母和数字
 class_names = [
     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
@@ -75,6 +75,7 @@ def get_cutted_patches(capchar):
     img = cv2.imread(capchar)
     if img is None:
         img = get_gif_first_frame(capchar)
+    copy_img = np.copy(img)
 
     # 将图像二值化
     # 127和128的像素是干扰，都变为255 即白色，其余非白色变黑 即字符
@@ -99,16 +100,20 @@ def get_cutted_patches(capchar):
 
     # 获取轮廓
     dilation = cv2.cvtColor(dilation, cv2.COLOR_BGR2GRAY)
-    contours, _ = cv2.findContours(dilation, cv2.RETR_TREE,
+    contours, _ = cv2.findContours(dilation, cv2.RETR_EXTERNAL,
                                    cv2.CHAIN_APPROX_SIMPLE)
-    # # 显示轮廓
-    # drawContours = cv2.drawContours(cv2.imread(capchar), contours, -1,
-    #                                 (0, 0, 255), 2)
+    # 显示轮廓
+    drawContours = cv2.drawContours(copy_img, contours, -1, (0, 0, 255), 2)
     # cv2.imshow('drawContours', drawContours)
     # cv2.waitKey(0)
 
     # 只保留面积最大的6个轮廓
     contours = sorted(contours, key=cv2.contourArea, reverse=True)[:6]
+    # 只保留周长最大的6个轮廓
+    # contours = sorted(contours,
+    #                   key=lambda length:
+    #                   [cv2.arcLength(contour, True) for contour in contours],
+    #                   reverse=True)[:6]
 
     # 获取所有外接矩形
     boundingBoxes = [cv2.boundingRect(c) for c in contours]
@@ -121,56 +126,13 @@ def get_cutted_patches(capchar):
     cut_chars = []
     for box in boundingBoxes:
         x, y, w, h = box
-        char = dilation[y:y + h, x:x + w]
+        char = dilation[y - 1:y + h + 1, x - 1:x + w + 1]
         cut_chars.append(char)
         # cv2.imshow('char', char)
         # cv2.waitKey(0)
-
-    # 遍历字符列表
-    for i in range(len(cut_chars)):
-        # 创建一个垂直列表
-        vertical = []
-        # 遍历字符图像的每一行，并将每一行的元素求和，添加到垂直列表中
-        vertical = [
-            sum(cut_chars[i][index, :]) for index in range(cut_chars[i].shape[0])
-        ]
-
-        # 获取垂直列表中元素为0的索引
-        item_cnt = len(vertical)
-        zero_vertical_index = [
-            index for index, value in enumerate(vertical) if value == 0
-        ]
-        # 如果垂直列表中没有0，那么第一个索引为0，最后一个索引为字符图像的行数
-        if len(zero_vertical_index) != 0:
-            if 0 not in zero_vertical_index:
-                first_index = 0
-                last_index = zero_vertical_index[0] + 1
-            # 如果垂直列表中最后一个元素为0，那么第一个索引为字符图像的行数减1，最后一个索引为字符图像的行数减1
-            elif item_cnt - 1 not in zero_vertical_index:
-                first_index = item_cnt - 1
-                last_index = 0
-            # 如果垂直列表中既有0，又不是所有元素都为0，那么第一个索引为最后一个元素为0的索引加1，最后一个索引为第一个元素为0的索引减1
-            else:
-                target = [
-                    index
-                    for index, value in enumerate(zero_vertical_index[:-1])
-                    if zero_vertical_index[index + 1] -
-                    zero_vertical_index[index] != 1
-                ]
-                first_index = zero_vertical_index[target[0]] - 1
-                last_index = zero_vertical_index[target[-1] + 1] + 1
-        else:
-            first_index = 0
-            last_index = item_cnt
-
-        # 获取第一个索引和最后一个索引
-        (v_f, v_l) = first_index, last_index
-        # 获取目标字符图像
-        target_char = cut_chars[i][v_f:v_l]
-
         # 保存字符图像
-        if target_char.shape[0] > 0:
-            save_char(target_char)
+        if char.shape[0] > 0 and char.shape[1] > 0:
+            save_char(char)
 
 
 def list_images_in_folder(folder_path):
