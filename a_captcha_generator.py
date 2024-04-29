@@ -1,8 +1,8 @@
 '''
 Author: BNDou
 Date: 2024-04-21 16:55:13
-LastEditTime: 2024-04-25 03:26:35
-FilePath: \Captchas_BOC\1_captcha_generator.py
+LastEditTime: 2024-04-30 06:23:17
+FilePath: \Captchas_BOC\a_captcha_generator.py
 Description: 
   使用requests库下载BOC验证码图片
 '''

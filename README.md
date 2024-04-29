@@ -1,7 +1,7 @@
 <!--
  * @Author: BNDou
  * @Date: 2024-04-22 14:46:44
- * @LastEditTime: 2024-04-26 16:03:27
+ * @LastEditTime: 2024-04-30 07:43:10
  * @FilePath: \Captchas_BOC\README.md
  * @Description: 
 -->
@@ -15,17 +15,20 @@
 
 ```
 Captchas_BOC
-├── 1_captcha_generator.py # 验证码生成器（✅完成）
-├── 2_char_generator.py # 字符码字典生成器（✅完成）
+├── a_captcha_generator.py # 验证码生成器（✅完成）
+├── b_char_generator.py # 字符码字典生成器（✅完成）
 ├── Create Leaning Model # 不同库创建训练模型
-│   ├── 3_keras_cnn_train.py # 创建训练模型（✅完成）
-│   └── 3_pytorch_cnn_train.py # 创建训练模型（❌未完成）
+│   ├── c_keras_cnn_train.py # 创建训练模型（✅完成）
+│   └── c_pytorch_cnn_train.py # 创建训练模型（❌未完成）
 ├── Verification Model # 不同库验证模型
-│   ├── 4_keras_recognition.py # Keras库识别程序（✅完成）
-│   └── 4_pytorch_recognition.py # PyTorch库识别程序（❌未完成）
+│   ├── d_cnocr_recognition.py # CnOCR库识别程序（✅完成）
+│   ├── d_keras_recognition.py # Keras库识别程序（✅完成）
+│   └── d_pytorch_recognition.py # PyTorch库识别程序（❌未完成）
 ├── model # 保存模型
 │   └── keras_model（❌文件太大不允许上传）
-├── keras_ocr_api.py # 使用Keras库的识别验证码API（✅完成）
+├── e_cnocr_ocr_api.py # 使用CnOCR库的识别验证码API（✅完成）
+├── e_keras_ocr_api.py # 使用Keras库的识别验证码API（✅完成）
+├── CyclicVerification.py # 循环验证（✅完成）
 └── XXXX.py # XXXX（❓暂定）
 ```
 

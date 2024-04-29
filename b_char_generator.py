@@ -1,8 +1,8 @@
 '''
 Author: BNDou
 Date: 2024-04-21 18:02:48
-LastEditTime: 2024-04-26 14:24:43
-FilePath: \Captchas_BOC\2_char_generator.py
+LastEditTime: 2024-04-30 06:23:25
+FilePath: \Captchas_BOC\b_char_generator.py
 Description: 
     保存字符标签图像
 '''

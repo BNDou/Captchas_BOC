@@ -1,8 +1,8 @@
 '''
 Author: BNDou
 Date: 2024-04-22 23:24:04
-LastEditTime: 2024-04-26 15:55:35
-FilePath: \Captchas_BOC\3_keras_cnn_train.py
+LastEditTime: 2024-04-30 06:23:37
+FilePath: \Captchas_BOC\c_keras_cnn_train.py
 Description: 
     使用keras框架训练一个卷积神经网络，用于识别验证码。
 '''
@@ -129,11 +129,12 @@ if __name__ == '__main__':
                   trainY,
                   validation_data=(testX, testY),
                   epochs=50,
-                  batch_size=128)
+                  batch_size=128,
+                  )
     
     # 保存模型
     print("------保存模型------")
-    model.save('./model/keras_model.h5')
+    model.save('./model/keras_model')
 
     # 绘制训练过程中的准确率曲线
     print("------绘制训练过程中的准确率曲线------")

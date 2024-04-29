@@ -1,8 +1,8 @@
 '''
 Author: BNDou
 Date: 2024-04-25 06:23:40
-LastEditTime: 2024-04-25 06:23:57
-FilePath: \Captchas_BOC\3_yolo_cnn_train.py
+LastEditTime: 2024-04-30 06:24:01
+FilePath: \Captchas_BOC\c_yolo_cnn_train.py
 Description: 
 '''
 from PIL import Image

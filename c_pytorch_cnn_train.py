@@ -1,8 +1,8 @@
 '''
 Author: BNDou
 Date: 2024-04-22 23:24:04
-LastEditTime: 2024-04-24 21:35:14
-FilePath: \Captchas_BOC\3_pytorch_cnn_train.py
+LastEditTime: 2024-04-30 06:23:47
+FilePath: \Captchas_BOC\c_pytorch_cnn_train.py
 Description: 
 使用pytorch训练一个CNN模型，用于识别验证码。
 '''

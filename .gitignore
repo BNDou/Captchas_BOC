@@ -158,3 +158,6 @@ cython_debug/
 model/keras_model.h5
 /labelImg_v1.8.1
 /temp
+config.json
+/output
+logo.ico
