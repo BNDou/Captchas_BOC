@@ -1,7 +1,7 @@
 <!--
  * @Author: BNDou
  * @Date: 2024-04-22 14:46:44
- * @LastEditTime: 2024-04-30 07:43:10
+ * @LastEditTime: 2024-05-20 01:13:26
  * @FilePath: \Captchas_BOC\README.md
  * @Description: 
 -->
@@ -37,11 +37,11 @@ Captchas_BOC
 <table>
     <tr>
         <td>训练准确率曲线</td> 
-        <td><img width="50%" src="model\keras准确率曲线.png" /></td>
+        <td><img width="50%" src="https://cdn.bndou.eu.org/gh/BNDou/Captchas_BOC/model/keras准确率曲线.png" /></td>
     </tr>
     <tr>
         <td>预测结果</td> 
-        <td><img width="50%" src="model\keras预测报告.png" /></td>
+        <td><img width="50%" src="https://cdn.bndou.eu.org/gh/BNDou/Captchas_BOC/model/keras预测报告.png" /></td>
     </tr>
     <tr>
   		<td>项目运行</td> 
@@ -71,16 +71,16 @@ Captchas_BOC
     </tr>
 </table>
 
-## PyTorch库
+## PyTorch库（❌未完成）
 
 <table>
-    <tr>
+    <!-- <tr>
         <td>训练准确率曲线</td> 
-        <td><img width="100%" src="model\pytorch准确率曲线.png" /></td>
+        <td><img width="100%" src="https://cdn.bndou.eu.org/gh/BNDou/Captchas_BOC/model/pytorch准确率曲线.png" /></td>
     </tr>
     <tr>
         <td>预测结果</td> 
-        <td><img width="100%" src="model\pytorch预测报告.png" /></td>
+        <td><img width="100%" src="https://cdn.bndou.eu.org/gh/BNDou/Captchas_BOC/model/pytorch预测报告.png" /></td> -->
    </tr>
     <tr>
   		<td>项目运行</td> 
@@ -112,7 +112,7 @@ Captchas_BOC
 
 ## 捐赠支持，用爱发电
 
-<a href="https://github.com/BNDou/"><img height="200px" src="readme_files\donate.jpg" /></a>
+<a href="https://github.com/BNDou/"><img height="200px" src="https://cdn.bndou.eu.org/gh/BNDou/Captchas_BOC/readme_files/donate.jpg" /></a>
 
 您的赞赏，激励我更好的创作！谢谢~
 
